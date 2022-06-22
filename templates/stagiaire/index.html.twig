@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello StagiaireController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+ 
+ <h1>Liste des Stagiaires</h1>
+
+<a href="{{ path('add_stagiaire')}}"> Ajouter un stagiaire <br><br></a>
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>E-Mail</th>
+            <th>Fiche</th>
+            <th>Téléphone</th>
+            <th>Date de Naissance</th>
+            <th>Modifier</th>
+            <th>Supprimer</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+             {% for stagiaire in stagiaires %} 
+            <td> {{stagiaire.nom}} </td>
+            <td> {{stagiaire.prenom}}</td> 
+            <td> {{stagiaire.mail}} </td>
+            <td><a href="{{ path('show_stagiaire',{'id': stagiaire.id}) }}"><i class="fa-solid fa-bug"></i></a></td>
+            <td> {{stagiaire.telephone}} </td>
+            <td> {{stagiaire.born | date('Y-m-d')}} </td>
+            <td> <a href="{{ path('update_stagiaire',{'id': stagiaire.id}) }}"><i class="fa-solid fa-pen"></i></a> </td>
+            <td> <a href="{{ path('delete_stagiaire',{'id': stagiaire.id}) }}"><i class="fa-solid fa-trash-can"></i></a> </td>
+        </tr>
+         {% endfor %} 
+    </tbody>
+</table>
+   
+    
+       
+   
+
+
+{# {{ path('show_stagiaire', {'id': stagiaire.id}) }} #}
+
+</div>
+{% endblock %}
